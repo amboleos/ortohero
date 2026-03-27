@@ -67,7 +67,7 @@ export function HeroSlider({
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#BB1AA0]/90 via-[#BB1AA0]/80 to-[#330388]/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#330388]/92 via-[#330388]/82 to-[#BB1AA0]/72" />
           </div>
 
           {/* Content */}
@@ -99,7 +99,7 @@ export function HeroSlider({
                 {slide.primaryCta && (
                   <Link
                     href={slide.primaryCta.href}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[#BB1AA0] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200 hover:-translate-y-0.5 shadow-lg"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#F0F7FF] text-[#330388] text-[14px] font-normal rounded-full hover:bg-[#330388] hover:text-white transition-all duration-200"
                   >
                     {slide.primaryCta.text}
                     <ArrowRight className="w-5 h-5" />
@@ -108,7 +108,7 @@ export function HeroSlider({
                 {slide.secondaryCta && (
                   <Link
                     href={slide.secondaryCta.href}
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#BB1AA0] transition-all duration-200"
+                    className="inline-flex items-center justify-center px-6 py-4 border border-[#F0F7FF] bg-transparent text-[#F0F7FF] text-[14px] font-normal rounded-full hover:bg-[#F0F7FF] hover:text-[#330388] transition-all duration-200"
                   >
                     {slide.secondaryCta.text}
                   </Link>

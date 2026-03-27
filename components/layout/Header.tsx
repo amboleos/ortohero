@@ -77,7 +77,7 @@ export function Header() {
                   className={cn(
                     'flex items-center gap-1 px-4 py-2 font-medium transition-all duration-200',
                     scrolled
-                      ? 'text-neutral-700 hover:text-[#BB1AA0]'
+                      ? 'text-neutral-700 hover:text-[#330388]'
                       : 'text-white/90 hover:text-white'
                   )}
                 >
@@ -98,7 +98,7 @@ export function Header() {
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="block px-4 py-3 text-neutral-700 hover:bg-[#BB1AA0]/10 hover:text-[#BB1AA0] transition-colors duration-200"
+                          className="block px-4 py-3 text-neutral-700 hover:bg-[#330388]/10 hover:text-[#330388] transition-colors duration-200"
                         >
                           {child.name}
                         </Link>
@@ -117,8 +117,8 @@ export function Header() {
               className={cn(
                 'px-5 py-2 rounded-full font-medium transition-all duration-200',
                 scrolled
-                  ? 'bg-[#BB1AA0] text-white hover:bg-[#9A1780]'
-                  : 'bg-white text-[#BB1AA0] hover:bg-gray-100'
+                  ? 'bg-[#BB1AA0] text-white hover:bg-[#330388]'
+                  : 'bg-[#F0F7FF] text-[#330388] hover:bg-white'
               )}
             >
               Log In
@@ -161,7 +161,7 @@ export function Header() {
                         key={child.name}
                         href={child.href}
                         onClick={() => setIsOpen(false)}
-                        className="block px-4 py-2 rounded-lg text-neutral-700 hover:bg-[#BB1AA0]/10 hover:text-[#BB1AA0] transition-colors duration-200"
+                        className="block px-4 py-2 rounded-lg text-neutral-700 hover:bg-[#330388]/10 hover:text-[#330388] transition-colors duration-200"
                       >
                         {child.name}
                       </Link>
@@ -171,7 +171,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 rounded-lg text-neutral-700 hover:bg-[#BB1AA0]/10 hover:text-[#BB1AA0] font-medium transition-colors duration-200"
+                    className="block px-4 py-3 rounded-lg text-neutral-700 hover:bg-[#330388]/10 hover:text-[#330388] font-medium transition-colors duration-200"
                   >
                     {item.name}
                   </Link>
@@ -182,7 +182,7 @@ export function Header() {
               <Link
                 href="https://dr.orthero.com.tr/new/main-panel"
                 onClick={() => setIsOpen(false)}
-                className="block w-full text-center px-5 py-3 bg-[#BB1AA0] text-white rounded-full font-medium hover:bg-[#9A1780] transition-colors"
+                className="block w-full text-center px-5 py-3 bg-[#BB1AA0] text-white rounded-full font-normal text-[14px] hover:bg-[#330388] transition-colors"
               >
                 Log In
               </Link>

@@ -53,7 +53,7 @@ const config: Config = {
       },
       fontFamily: {
         heading: ['var(--font-poppins)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        body: ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        body: ['var(--font-poppins)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],

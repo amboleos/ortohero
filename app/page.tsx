@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, HeroSlider, NewsletterSection, Button } from '@/components';
+import { Container, HeroSlider, NewsletterSection, Button, HomeStatsBar } from '@/components';
 import {
   Eye,
   Zap,
@@ -16,23 +16,25 @@ export const metadata: Metadata = {
     'Orthero clear aligners are nearly invisible, removable, and comfortable aligners used and trusted by dentists in straightening teeth. Advanced 3D scanning and design technology for aesthetic orthodontics.',
 };
 
+const heroSlideCopy = {
+  title: 'The Clearest Way of Changing Your Smile',
+  subtitle:
+    'Orthero clear aligners are nearly invisible, removable, and comfortable aligners used and trusted by dentists in straightening teeth.',
+  primaryCta: { text: 'Learn More', href: '/about' },
+  secondaryCta: { text: 'Log In', href: 'https://dr.orthero.com.tr/new/main-panel' },
+};
+
 const heroSlides = [
   {
-    badge: 'Clear Aligner Technology',
-    title: 'The Clearest Way of Changing Your Smile',
-    subtitle: 'Orthero clear aligners are nearly invisible, removable, and comfortable aligners used and trusted by dentists in straightening teeth.',
-    primaryCta: { text: 'Learn More', href: '/advantages' },
-    secondaryCta: { text: 'Log In', href: 'https://dr.orthero.com.tr/new/main-panel' },
-    image: 'https://ortheroaligner.com/wp-content/uploads/2024/08/orthero_global_homepage_hero_banner-1-scaled.webp',
+    ...heroSlideCopy,
+    image:
+      'https://ortheroaligner.com/wp-content/uploads/2024/08/orthero_global_homepage_hero_banner-1-scaled.webp',
   },
-];
-
-const stats = [
-  { value: '10', suffix: ' Years', label: 'Orthero Smiles' },
-  { value: '60,000', suffix: '+', label: 'Cases' },
-  { value: '4', suffix: 'M+', label: 'Aligners' },
-  { value: '20', suffix: '+', label: 'Countries' },
-  { value: '120', suffix: '+', label: 'Employees' },
+  {
+    ...heroSlideCopy,
+    image:
+      'https://ortheroaligner.com/wp-content/uploads/2024/08/orthero_global_homepage_hero_banner-scaled.webp',
+  },
 ];
 
 const clearAdvantages = [
@@ -75,19 +77,22 @@ const malocclusions = [
 
 const newsItems = [
   {
-    date: 'Mar 15, 2026',
-    title: 'Modern Ortodonti Tedavi Yontemleri ve Orthero ile Dis Duzelten Teknolojiler',
-    image: 'https://ortheroaligner.com/wp-content/uploads/2026/03/Modern-Ortodonti-Tedavi-Yontemleri.webp',
+    href: 'https://ortheroaligner.com/modern-ortodonti-tedavi-yontemleri/',
+    title: 'Modern Ortodonti Tedavi Yöntemleri ve Orthero ile Diş Düzelten Teknolojiler',
+    image:
+      'https://ortheroaligner.com/wp-content/uploads/2026/03/Modern-Ortodonti-Tedavi-Yontemleri.webp',
   },
   {
-    date: 'Mar 10, 2026',
-    title: 'Dijital Ortodonti Tedavi Asamalari ve Orthero ile Gulus Tasarimi',
-    image: 'https://ortheroaligner.com/wp-content/uploads/2026/03/Dijital-Ortodonti-Tedavi-Asamalari.webp',
+    href: 'https://ortheroaligner.com/dijital-ortodonti-tedavi-asamalari/',
+    title: 'Dijital Ortodonti Tedavi Aşamaları ve Orthero ile Gülüş Tasarımı',
+    image:
+      'https://ortheroaligner.com/wp-content/uploads/2026/03/Dijital-Ortodonti-Tedavi-Asamalari.webp',
   },
   {
-    date: 'Mar 5, 2026',
-    title: 'Aralikli Disleri Birlestirme Yontemleri ve Modern Ortodonti Cozumleri',
-    image: 'https://ortheroaligner.com/wp-content/uploads/2026/03/Aralikli-Disleri-Birlestirme-Yontemleri.webp',
+    href: 'https://ortheroaligner.com/aralikli-disleri-birlestirme-yontemleri/',
+    title: 'Aralıklı Dişleri Birleştirme Yöntemleri ve Modern Ortodonti Çözümleri',
+    image:
+      'https://ortheroaligner.com/wp-content/uploads/2026/03/Aralikli-Disleri-Birlestirme-Yontemleri.webp',
   },
 ];
 
@@ -95,42 +100,41 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Slider */}
-      <HeroSlider slides={heroSlides} />
+      <HeroSlider
+        slides={heroSlides}
+        autoPlay={process.env.NEXT_PUBLIC_E2E_DISABLE_HERO_AUTOPLAY !== '1'}
+      />
 
-      {/* Stats Section */}
-      <section className="py-10 bg-gradient-to-r from-[#BB1AA0] to-[#9A1780]">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-white mb-1">
-                  <span className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl">{stat.value}</span>
-                  <span className="font-heading font-bold text-xl md:text-2xl lg:text-3xl">{stat.suffix}</span>
-                </div>
-                <p className="text-white/80 text-sm md:text-base">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <HomeStatsBar />
 
       {/* Advanced Digital Orthodontics Section */}
       <section className="py-16 md:py-24">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#4C1D95] mb-6 leading-tight">
+            <div className="space-y-8">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#330388] leading-tight">
                 Advanced Digital Orthodontics
               </h2>
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Orthero leverages advanced 3D scanning and design technology within the field of aesthetic orthodontics. This allows us to create personalized, clear aligner treatment plans for optimal tooth movement.
-              </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                With a commitment to excellence and precision, we combine cutting-edge techniques with the highest standards of quality. This ensures that our aligners are not only effective but also safe for optimal oral health.
-              </p>
-              <Button variant="primary" rightIcon={<ArrowRight className="w-5 h-5" />} asChild>
-                <Link href="/advantages">Learn More</Link>
-              </Button>
+              <div className="space-y-6">
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Orthero leverages advanced 3D scanning and design technology within the field of aesthetic
+                  orthodontics. This allows us to create personalized, clear aligner treatment plans for optimal tooth
+                  movement.
+                </p>
+                <Button variant="primary" rightIcon={<ArrowRight className="w-5 h-5" />} asChild>
+                  <Link href="/advantages">Learn More</Link>
+                </Button>
+              </div>
+              <div className="space-y-6">
+                <p className="text-gray-600 leading-relaxed">
+                  With a commitment to excellence and precision, we combine cutting-edge techniques with the highest
+                  standards of quality. This ensures that our aligners are not only effective but also safe for optimal
+                  oral health.
+                </p>
+                <Button variant="primary" rightIcon={<ArrowRight className="w-5 h-5" />} asChild>
+                  <Link href="/advantages">Learn More</Link>
+                </Button>
+              </div>
             </div>
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
@@ -142,7 +146,6 @@ export default function HomePage() {
                   className="w-full h-auto"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-gradient-to-br from-[#BB1AA0] to-[#9A1780] rounded-2xl -z-10" />
             </div>
           </div>
         </Container>
@@ -152,7 +155,7 @@ export default function HomePage() {
       <section className="py-16 md:py-24 bg-[#F0F7FF]">
         <Container>
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#4C1D95] mb-4">
+            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#330388] mb-4">
               Discover the Clear Advantage
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto mb-4">
@@ -174,7 +177,7 @@ export default function HomePage() {
                     <div className="text-[#BB1AA0]">{advantage.icon}</div>
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-lg md:text-xl text-[#4C1D95] mb-3">
+                    <h3 className="font-heading font-semibold text-base md:text-lg text-[#330388] mb-3">
                       {advantage.title}
                     </h3>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">{advantage.description}</p>
@@ -191,7 +194,7 @@ export default function HomePage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#4C1D95] mb-4">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#330388] mb-4">
                 Different Problems, One Solution
               </h2>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
@@ -257,10 +260,10 @@ export default function HomePage() {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#4C1D95] mb-4">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#330388] mb-4">
                 Engineered for Success
               </h2>
-              <p className="font-heading font-semibold text-lg md:text-xl text-[#4C1D95] mb-4">
+              <p className="font-heading font-semibold text-lg md:text-xl text-[#330388] mb-4">
                 Expertise, Technology, and Cutting-Edge Products.
               </p>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
@@ -285,7 +288,7 @@ export default function HomePage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#4C1D95] mb-4">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-[#330388] mb-4">
                 The Clear Difference
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
@@ -316,7 +319,7 @@ export default function HomePage() {
         <Container>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
             <div>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl text-[#4C1D95] mb-4">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl text-[#330388] mb-4">
                 News and Media
               </h2>
               <p className="text-gray-600 text-lg max-w-2xl">
@@ -336,24 +339,26 @@ export default function HomePage() {
             {newsItems.map((news, index) => (
               <article
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer"
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={news.image}
-                    alt={news.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-heading font-semibold text-base md:text-lg text-[#4C1D95] mb-3 group-hover:text-[#BB1AA0] transition-colors line-clamp-2">
-                    {news.title}
-                  </h3>
-                  <Button variant="outline" size="sm">
-                    Read More
-                  </Button>
-                </div>
+                <Link href={news.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={news.image}
+                      alt={news.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-heading font-semibold text-base md:text-lg text-[#330388] mb-3 group-hover:text-[#BB1AA0] transition-colors line-clamp-3">
+                      {news.title}
+                    </h3>
+                    <span className="inline-flex items-center justify-center gap-2 px-5 py-2 text-sm font-medium rounded-full border border-[#330388] text-[#330388] group-hover:bg-[#330388] group-hover:text-white transition-colors">
+                      Read More
+                    </span>
+                  </div>
+                </Link>
               </article>
             ))}
           </div>
@@ -361,7 +366,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-r from-[#BB1AA0] to-[#9A1780]">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-[#330388] to-[#BB1AA0]">
         <Container>
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
@@ -372,13 +377,13 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#BB1AA0] font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-4 bg-[#F0F7FF] text-[#330388] text-[14px] font-normal rounded-full hover:bg-[#330388] hover:text-white transition-all duration-200"
               >
                 Contact Us
               </Link>
               <Link
                 href="/advantages"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#BB1AA0] transition-all duration-200"
+                className="inline-flex items-center justify-center px-6 py-4 border border-[#F0F7FF] text-[#F0F7FF] text-[14px] font-normal rounded-full hover:bg-[#F0F7FF] hover:text-[#330388] transition-all duration-200"
               >
                 Advantages
               </Link>
@@ -389,8 +394,10 @@ export default function HomePage() {
 
       {/* Newsletter Section */}
       <NewsletterSection
+        variant="gradient"
         title="The Clearest Way of Changing Your Smile"
         description="Subscribe to our newsletter"
+        emailPlaceholder="Email"
       />
     </>
   );

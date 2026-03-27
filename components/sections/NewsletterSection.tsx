@@ -9,12 +9,17 @@ interface NewsletterSectionProps {
   title?: string;
   description?: string;
   className?: string;
+  /** Matches Orthero homepage: light top → deep purple bottom */
+  variant?: 'solid' | 'gradient';
+  emailPlaceholder?: string;
 }
 
 export function NewsletterSection({
   title = 'Subscribe to our newsletter',
   description = 'Stay updated with the latest news',
   className,
+  variant = 'solid',
+  emailPlaceholder = 'Enter your email',
 }: NewsletterSectionProps) {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -27,32 +32,58 @@ export function NewsletterSection({
     }
   };
 
+  const isGradient = variant === 'gradient';
+
   return (
-    <section className={cn('py-16 md:py-20 bg-[#23282D]', className)}>
+    <section
+      className={cn(
+        'py-16 md:py-20',
+        isGradient
+          ? 'bg-gradient-to-b from-white via-[#e8e0f4] to-[#330388]'
+          : 'bg-[#23282D]',
+        className
+      )}
+    >
       <Container>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading font-bold text-2xl md:text-3xl text-white mb-3">
+          <h2
+            className={cn(
+              'font-heading font-bold text-2xl md:text-3xl mb-3',
+              isGradient ? 'text-[#330388]' : 'text-white'
+            )}
+          >
             {title}
           </h2>
-          <p className="text-gray-400 mb-8">{description}</p>
-          
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <p className={cn('mb-8', isGradient ? 'text-[#330388]/80' : 'text-gray-400')}>
+            {description}
+          </p>
+
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto rounded-xl p-1 sm:p-0"
+          >
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder={emailPlaceholder}
+              aria-label={emailPlaceholder}
               required
-              className="flex-1 px-5 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#BB1AA0]/50 focus:border-[#BB1AA0] transition-all"
+              className={cn(
+                'flex-1 px-5 py-3 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-[#BB1AA0]/50 focus:border-[#BB1AA0]',
+                isGradient
+                  ? 'bg-white border border-[#4C1D95]/15 text-[#330388] placeholder:text-neutral-400 shadow-sm'
+                  : 'bg-white/10 border border-white/20 text-white placeholder:text-gray-400'
+              )}
             />
             <button
               type="submit"
               disabled={isSubmitted}
               className={cn(
-                'inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all duration-200',
+                'inline-flex items-center justify-center gap-2 px-6 py-3 text-[14px] font-normal rounded-full transition-all duration-200 shadow-md',
                 isSubmitted
                   ? 'bg-green-500 text-white cursor-default'
-                  : 'bg-[#BB1AA0] text-white hover:bg-[#9A1780] hover:-translate-y-0.5'
+                  : 'bg-[#BB1AA0] text-white hover:bg-[#330388]'
               )}
             >
               {isSubmitted ? (

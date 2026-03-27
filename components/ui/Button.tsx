@@ -12,23 +12,23 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  'inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
 const variants = {
   primary:
-    'bg-[#BB1AA0] text-white hover:bg-[#9A1780] hover:-translate-y-0.5 focus:ring-[#BB1AA0] active:bg-[#7A1466] shadow-md hover:shadow-lg',
+    'bg-[#BB1AA0] text-white hover:bg-[#330388] focus:ring-[#BB1AA0] active:bg-[#2A026F] shadow-md',
   secondary:
-    'bg-[#14B8A6] text-white hover:bg-[#0D9488] hover:-translate-y-0.5 focus:ring-[#14B8A6] active:bg-[#0F766E] shadow-md hover:shadow-lg',
+    'bg-[#F0F7FF] text-[#330388] hover:bg-[#330388] hover:text-white focus:ring-[#330388] border border-[#330388]/10',
   outline:
-    'bg-transparent border-2 border-[#BB1AA0] text-[#BB1AA0] hover:bg-[#BB1AA0] hover:text-white focus:ring-[#BB1AA0]',
+    'bg-white border border-[#330388] text-[#330388] hover:bg-[#330388] hover:text-white focus:ring-[#330388]',
   ghost:
     'bg-transparent text-[#BB1AA0] hover:bg-[#BB1AA0]/10 focus:ring-[#BB1AA0]',
 };
 
 const sizes = {
   sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
+  md: 'px-5 py-3 text-[14px]',
+  lg: 'px-6 py-4 text-[14px]',
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
